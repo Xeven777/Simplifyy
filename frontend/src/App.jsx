@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function App() {
-  const [longUrl, setLongUrl] = useState(""); // Change 'url' to 'longUrl'
+  const [longUrl, setLongUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
 
   const handleSubmit = async (event) => {
@@ -12,11 +12,12 @@ function App() {
       const response = await axios.post(
         "https://simplify-backend.vercel.app/api/url/shorten",
         {
-          longUrl: longUrl, // Change 'url' to 'longUrl'
-        }
+          longUrl: longUrl,
+        },
+        { crossDomain: true } // Add the crossDomain option
       );
 
-      setShortenedUrl(response.data.shortUrl); // Assuming your response has a 'shortUrl' property
+      setShortenedUrl(response.data.shortUrl);
     } catch (error) {
       console.error("Error shortening URL:", error);
     }
