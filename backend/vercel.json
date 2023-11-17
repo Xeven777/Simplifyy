@@ -13,8 +13,7 @@
     },
     {
       "src": "/api/url/shorten",
-      "methods": ["POST"],
-      "headers": ["Origin", "Content-Type", "Accept"]
+      "methods": ["POST"]
     }
   ]
 }
