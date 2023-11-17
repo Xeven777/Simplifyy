@@ -3,19 +3,15 @@ const connectDB = require('./config/db');
 const cors = require('cors');   // to allow cross-origin requests
 
 const app = express();
-
+app.use(cors({
+    origin: 'https://simplifyy.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST',
+    credentials: true,
+}));
 // Connect to database
 connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-
-// {
-//     origin: 'https://simplifyy.vercel.app',
-//     methods: 'GET,HEAD,PUT,PATCH,POST',
-//     credentials: true,
-// }
-
 
 // Define Routes
 app.use('/', require('./routes/index'));
