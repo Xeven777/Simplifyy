@@ -7,6 +7,7 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    axios.defaults.withCredentials = true;
 
     try {
       const response = await axios.post(
