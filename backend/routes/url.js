@@ -10,10 +10,7 @@ const router = express.Router();
 const num = 10;
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    const env = process.env.NODE_ENV || 'development';
-    const baseUrl = config.get(`baseUrl.${env}`);
-
-
+    const baseUrl = config.get('baseUrl');
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
