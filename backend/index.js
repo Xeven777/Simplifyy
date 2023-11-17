@@ -6,12 +6,12 @@ const app = express();
 
 // Connect to database
 connectDB();
-app.use(cors({
-    origin: 'https://simplifyy.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST',
-    credentials: true,
-}));
-
+app.use(cors());
+// {
+//     origin: 'https://simplifyy.vercel.app',
+//     methods: 'GET,HEAD,PUT,PATCH,POST',
+//     credentials: true,
+// }
 app.use(express.json());
 
 // Define Routes
