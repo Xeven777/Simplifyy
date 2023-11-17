@@ -2,6 +2,6 @@
   "mongoURI": "mongodb+srv://anish:ab7lm....@cluster0.6cidicm.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp",
   "baseUrl": {
     "development": "http://localhost:5000",
-    "production": "https://your-production-url"
+    "production": "https://simplify-backend.vercel.app"
   }
 }
