@@ -15,7 +15,6 @@
       "src": "/api/url/shorten",
       "methods": ["POST"],
       "headers": ["Origin", "Content-Type", "Accept"],
-      "allowCredentials": true,
       "maxAge": 3600
     }
   ]

@@ -8,9 +8,7 @@ const app = express();
 // Connect to database
 connectDB();
 app.use(cors({
-    origin: 'https://simplifyy.vercel.app',
-    methods: ['GET', 'POST'],
-    credentials: true
+    origin: '*'
 }));
 
 app.use(express.json());
