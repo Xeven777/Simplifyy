@@ -15,7 +15,7 @@ function App() {
         {
           longUrl: longUrl,
         },
-        { crossDomain: true } // Add the crossDomain option
+        { crossDomain: true } 
       );
 
       setShortenedUrl(response.data.shortUrl);
