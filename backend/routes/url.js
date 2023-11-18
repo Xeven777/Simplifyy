@@ -18,7 +18,7 @@ router.post('/shorten', async (req, res) => {
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
-    const urlCode = nanoid();
+    const urlCode = nanoid(num);
     if (validUrl.isUri(longUrl)) {
         try {
             let url = await Url.findOne({ longUrl });
