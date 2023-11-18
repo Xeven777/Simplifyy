@@ -10,7 +10,7 @@ const router = express.Router();
 const num = 10;
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    const baseUrl = config.get('baseUrl');
+    const baseUrl = "https://simplify-backend.vercel.app";
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
