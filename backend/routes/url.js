@@ -8,9 +8,12 @@ const router = express.Router();
 // @route  POST /api/url/shorten
 // @desc  Create short URL
 const num = 10;
+const baseUrl = process.env.NODE_ENV === 'production' 
+    ? "https://simplify-backend.vercel.app" 
+    : "http://localhost:5000";
+
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    const baseUrl = "https://simplify-backend.vercel.app";
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }

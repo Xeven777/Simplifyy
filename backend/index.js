@@ -3,10 +3,15 @@ const connectDB = require('./config/db');
 const cors = require('cors');   // to allow cross-origin requests
 
 const app = express();
+
+const corsOrigin = process.env.NODE_ENV === 'production' 
+    ? "https://simplify-frontend.vercel.app" 
+    : "http://localhost:5173";
+
 app.use(cors({
-    origin: 'https://simplifyy.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST',
-    credentials: true,
+        origin: corsOrigin,
+        methods: 'GET,HEAD,PUT,PATCH,POST',
+        credentials: true,
 }));
 // Connect to database
 connectDB();

@@ -7,11 +7,12 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    axios.defaults.withCredentials = true;
-
+    const urlInDev = "http://localhost:5000/api/url/shorten";
+    const urlInProd = "https://simplify-backend.vercel.app/api/url/shorten";
+    const url = import.meta.env.VITE_APP_NODE_ENV === 'production' ? urlInProd : urlInDev;
     try {
       const response = await axios.post(
-        "https://simplify-backend.vercel.app/api/url/shorten",
+        url,
         {
           longUrl: longUrl,
         },
