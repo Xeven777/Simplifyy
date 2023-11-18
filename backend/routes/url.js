@@ -1,8 +1,8 @@
 const express = require('express');
 const validUrl = require('valid-url');
-const config = require('config');
 const Url = require('../models/Url');
-const { nanoid } = require('nanoid');
+const { customAlphabet } = require('nanoid');
+const nanoid = customAlphabet('simply', 3);
 const router = express.Router();
 
 // @route  POST /api/url/shorten
@@ -19,7 +19,7 @@ router.post('/shorten', async (req, res) => {
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
-    const urlCode = nanoid(num);
+    const urlCode = nanoid();
     if (validUrl.isUri(longUrl)) {
         try {
             let url = await Url.findOne({ longUrl });
