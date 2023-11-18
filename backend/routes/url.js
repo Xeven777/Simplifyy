@@ -11,7 +11,7 @@ const num = 10;
 
 //baseUrl for backend url
 const baseUrl = process.env.NODE_ENV === 'production' 
-    ? "https://smply.vercel.app/" 
+    ? "https://smply.vercel.app" 
     : "http://localhost:5000";
 
 router.post('/shorten', async (req, res) => {
