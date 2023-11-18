@@ -5,7 +5,7 @@ const cors = require('cors');   // to allow cross-origin requests
 const app = express();
 
 const corsOrigin = process.env.NODE_ENV === 'production' 
-    ? "https://simplify-frontend.vercel.app" 
+    ? "https://simplifyy.vercel.app"
     : "http://localhost:5173";
 
 app.use(cors({
