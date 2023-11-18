@@ -1,13 +1,12 @@
 const express = require('express');
 const validUrl = require('valid-url');
 const Url = require('../models/Url');
-const { customAlphabet } = require('nanoid');
-const nanoid = customAlphabet('simply', 3);
+const { nanoid } = require('nanoid');
 const router = express.Router();
 
 // @route  POST /api/url/shorten
 // @desc  Create short URL
-const num = 2;
+const num = 7;
 
 //baseUrl for backend url
 const baseUrl = process.env.NODE_ENV === 'production' 
