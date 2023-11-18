@@ -7,7 +7,7 @@ const router = express.Router();
 
 // @route  POST /api/url/shorten
 // @desc  Create short URL
-const num = 10;
+const num = 9;
 
 //baseUrl for backend url
 const baseUrl = process.env.NODE_ENV === 'production' 
