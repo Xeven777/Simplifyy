@@ -18,11 +18,11 @@ function Home() {
         {
           longUrl: longUrl,
         },
-        { withCredentials: true, crossDomain: true }
+        { withCredentials: true, crossDomain: true },
       );
 
       setShortenedUrl(response.data.shortUrl);
-      setClickCount(response.data.clickCount); 
+      setClickCount(response.data.clickCount);
     } catch (error) {
       console.error("Error shortening URL:", error);
     }
