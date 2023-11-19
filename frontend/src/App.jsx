@@ -1,6 +1,4 @@
-import { auth, provider } from "./firebase";
 import { useState, useEffect } from "react";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import Home from "./Home";
 
 function App() {
