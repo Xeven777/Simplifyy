@@ -1,60 +1,34 @@
-import { useState } from "react";
-import axios from "axios";
+import { auth, provider } from "./firebase";
+import { useState, useEffect } from "react";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import Home from "./Home";
 
 function App() {
-  const [longUrl, setLongUrl] = useState("");
-  const [shortenedUrl, setShortenedUrl] = useState("");
+  const [values, setValues] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const urlInDev = "http://localhost:5000/api/url/shorten";
-    //backend url in production
-    const urlInProd = "https://smply.vercel.app/api/url/shorten";
-    const url = import.meta.env.VITE_APP_NODE_ENV === 'production' ? urlInProd : urlInDev;
-    try {
-      const response = await axios.post(
-        url,
-        {
-          longUrl: longUrl,
-        },
-        { withCredentials: true, crossDomain: true }
-      );
-
-      setShortenedUrl(response.data.shortUrl);
-    } catch (error) {
-      console.error("Error shortening URL:", error);
-    }
+  const handleClick = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setValues(result.user.email);
+        localStorage.setItem("email", result.user.email);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email, credential);
+      });
   };
 
-  return (
-    <>
-      <div className="container">
-        <h1> Simply </h1>
-        <h3> a simple link shortener!</h3>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="url"
-            value={longUrl}
-            onChange={(e) => setLongUrl(e.target.value)}
-            placeholder="Enter your URL here"
-          />
-          <button type="submit">SUBMIT</button>
-        </form>
+  useEffect(() => {
+    setValues(localStorage.getItem("email"));
+  }, []);
 
-        {shortenedUrl && (
-          <>
-            <div className="result">
-              <p>Your shortened link is:</p>
-              <a href={shortenedUrl} target="_blank" rel="noopener noreferrer">
-                {shortenedUrl}
-              </a>
-            </div>
-          </>
-        )}
-      </div>
-    </>
+  return (
+    <div>
+      {values ? <Home /> : <button onClick={handleClick}> Google</button>}
+    </div>
   );
 }
-
 export default App;
