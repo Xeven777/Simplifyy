@@ -9,8 +9,8 @@ const router = express.Router();
 const num = 7;
 
 //baseUrl for backend url
-const baseUrl = process.env.NODE_ENV === 'production' 
-    ? "https://smply.vercel.app" 
+const baseUrl = process.env.NODE_ENV === 'production'
+    ? "https://smply.vercel.app"
     : "http://localhost:5000";
 
 router.post('/shorten', async (req, res) => {
@@ -23,7 +23,10 @@ router.post('/shorten', async (req, res) => {
         try {
             let url = await Url.findOne({ longUrl });
             if (url) {
-                res.json(url);
+                res.json({
+                    shortUrl: url.shortUrl,
+                    clickCount: url.clickCount,
+                });
             } else {
                 const shortUrl = baseUrl + '/' + urlCode;
                 url = new Url({
