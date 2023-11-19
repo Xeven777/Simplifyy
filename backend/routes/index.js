@@ -9,6 +9,8 @@ router.get('/:code', async (req, res) => {
     try {
         const url = await Url.findOne({ urlCode: req.params.code });
         if (url) {
+            url.clickCount++;
+            await url.save();
             return res.redirect(url.longUrl);
         }
         else {
