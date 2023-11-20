@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Montserrat:wght@400;600&display=swap");
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   font-family: "Atkinson Hyperlegible", "Montserrat", system-ui, Avenir,
     Helvetica, Arial, sans-serif;
@@ -98,7 +100,8 @@ input {
   box-shadow: 0 0 16px #6d4794c5;
   color: aliceblue;
 }
-input:active,input:focus {
+input:active,
+input:focus {
   outline: none;
   border-color: #8a90ff;
   background-color: #332e38;
@@ -107,13 +110,13 @@ input:active,input:focus {
   margin: 2rem;
   padding: 10px;
   font-family: "Montserrat";
-  background: linear-gradient(20deg,black,rgb(24, 24, 24),black);
+  background: linear-gradient(20deg, black, rgb(24, 24, 24), black);
   box-shadow: 0 0 16px #6d479444;
   border-radius: 1.5rem;
   transition: all 0.3s ease-in-out;
 }
 .result:hover {
-  background: linear-gradient(50deg,black,rgb(24, 24, 24),black);
+  background: linear-gradient(50deg, black, rgb(24, 24, 24), black);
   box-shadow: 0 0 16px #6d4794c5;
   transform: translateY(-2px);
 }
