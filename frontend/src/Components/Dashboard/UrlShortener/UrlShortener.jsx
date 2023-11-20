@@ -22,7 +22,7 @@ function Home() {
       );
 
       setShortenedUrl(response.data.shortUrl);
-      setClickCount(response.data.clickCount); 
+      setClickCount(response.data.clickCount);
     } catch (error) {
       console.error("Error shortening URL:", error);
     }
@@ -31,17 +31,18 @@ function Home() {
   return (
     <>
       <div className="container">
-        <h1> Simply </h1>
-        <h3> a simple link shortener!</h3>
+        <h1 className="p-6">Simply</h1>
+        <h3>A simple link shortener!</h3>
         <form onSubmit={handleSubmit}>
           <input
+          className="bg-neutral-800 focus:bg-stone-950 focus:shadow-lg focus:outline-none focus:ring-1 focus:ring-stone-400 m-3 "
             type="text"
             name="url"
             value={longUrl}
             onChange={(e) => setLongUrl(e.target.value)}
             placeholder="Enter your URL here"
           />
-          <button type="submit">SUBMIT</button>
+          <button className="shadow__btn text-zinc-50 py-2 px-6 shadow-lg text-xl active:scale-95 m-5" type="submit">Shorten</button>
         </form>
 
         {shortenedUrl && (

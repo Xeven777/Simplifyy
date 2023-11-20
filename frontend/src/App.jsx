@@ -13,8 +13,8 @@ const App = () => {
   
   return (
     <>
-      <div className="bg-gray-100 min-h-screen flex justify-center">
-        <div className="w-full">
+      <div className="min-h-screen flex justify-center">
+        <div className="w-full min-h-screen flex justify-center bg-zinc-900">
           <AuthProvider>
             <Router>
               <Routes>

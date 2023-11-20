@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   if (!currentUser) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex h-screen items-center justify-center w-full">
         <div className="m-auto flex flex-col">
           You must be logged in to view this page
           <div className="flex justify-evenly mt-4">
