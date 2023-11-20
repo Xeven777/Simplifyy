@@ -8,9 +8,7 @@ import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 
-
 const App = () => {
-  
   return (
     <>
       <div className="min-h-screen flex justify-center">
@@ -18,7 +16,7 @@ const App = () => {
           <AuthProvider>
             <Router>
               <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/" element={<Login />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/dashboard/*" element={<Dashboard />} />
                 <Route path="/signup" element={<Signup />} />
