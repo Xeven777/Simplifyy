@@ -10,25 +10,27 @@ const ForgotPassword = () => {
   const [message, setMessage] = useState("");
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      setMessage("")
-      setError("")
-      setLoading(true)
-      await resetPassword(emailRef.current.value)
-      setMessage("Check your inbox for further instructions")
+      setMessage("");
+      setError("");
+      setLoading(true);
+      await resetPassword(emailRef.current.value);
+      setMessage("Check your inbox for further instructions");
     } catch {
-      setError("Failed to reset password")
+      setError("Failed to reset password");
     }
 
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
     <>
       <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
         <div className="bg-white p-8 rounded shadow-md w-96">
-          <h2 className="text-3xl font-bold mb-8 text-center">Password Reset</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Password Reset
+          </h2>
           {error && (
             <div
               className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative"
@@ -73,11 +75,16 @@ const ForgotPassword = () => {
             </button>
           </form>
           <div className="w-100 text-center mt-3">
-            <Link to="/login" className="text-blue-800">Login</Link>
+            <Link to="/login" className="text-blue-800">
+              Login
+            </Link>
           </div>
         </div>
         <div className="text-center mt-4">
-          Need an account? <Link to="/signup" className="text-blue-800">Sign Up</Link>
+          Need an account?{" "}
+          <Link to="/signup" className="text-blue-800">
+            Sign Up
+          </Link>
         </div>
       </div>
     </>

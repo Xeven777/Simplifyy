@@ -31,7 +31,11 @@ const Signup = () => {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
+      await signup(
+        emailRef.current.value,
+        passwordRef.current.value,
+        nameRef.current.value,
+      );
       setNotError("Account created successfully. Log In");
       setSubmitted(true);
       nameRef.current.value = "";
@@ -110,19 +114,19 @@ const Signup = () => {
               >
                 Password
               </label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  className="mt-1 p-2 w-full border rounded"
-                  required
-                  ref={passwordRef}
-                />
-                <span
-                  onClick={togglePasswordVisibility}
-                  className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
-                >
-                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="mt-1 p-2 w-full border rounded"
+                required
+                ref={passwordRef}
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
             </div>
 
             <div className="mb-4">
