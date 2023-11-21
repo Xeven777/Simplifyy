@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
+// import Header from "./Header";
+import Sidebar from "./Sidebar";
 import { Route, Routes, Link } from "react-router-dom";
 import DashboardAbout from "./DashboardAbout";
 import DashboardHome from "./DashboardHome";
@@ -45,7 +46,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Header />
+      <Sidebar />
       <Routes>
         <Route path="/" element={<DashboardHome />} />
         <Route path="/dbabout" element={<DashboardAbout />} />

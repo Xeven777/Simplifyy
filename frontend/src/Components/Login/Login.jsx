@@ -13,6 +13,17 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const history = useNavigate();
 
+  const { googleSignUp, isSigningIn } = useAuth();
+
+  async function handleGoogleSignUp() {
+    try {
+      await googleSignUp();
+      history("/dashboard");
+    } catch (error) {
+      console.error("Google Sign Up failed:", error);
+    }
+  }
+
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -40,7 +51,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="bg-gray-100 min-h-screen w-full flex flex-col items-center justify-center">
+      <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
         <div className="bg-white p-8 rounded shadow-md w-96">
           <h2 className="text-3xl font-bold mb-8 text-center">Log In</h2>
           {error && (
@@ -101,6 +112,29 @@ const Login = () => {
           </form>
           <div className="w-100 text-center mt-3">
             <Link to="/forgot-password" className="text-blue-800">Forgot Password?</Link>
+          </div>
+          <div className="mt-4 text-center">
+            <div className="flex items-center mb-2">
+              <div className="w-full h-px bg-gray-600"></div>
+              <div className="text-center text-gray-500 px-5 text-sm font-bold">
+                Or
+              </div>
+              <div className="w-full h-px bg-gray-600"></div>
+            </div>
+
+            <button
+              className="w-full px-4 py-2 bg-slate-800 border flex gap-4 justify-center items-center border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+              onClick={handleGoogleSignUp}
+              disabled={loading || isSigningIn}
+            >
+              <img
+                className="w-6 h-6"
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                loading="lazy"
+                alt=""
+              />
+              <span>Log In With Google</span>
+            </button>
           </div>
         </div>
         <div className="text-center mt-4">

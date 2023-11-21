@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../../Context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
+  const history = useNavigate();
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -15,6 +16,16 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { googleSignUp, isSigningIn } = useAuth();
+
+  async function handleGoogleSignUp() {
+    try {
+      await googleSignUp();
+      history("/dashboard");
+    } catch (error) {
+      console.error("Google Sign Up failed:", error);
+    }
+  }
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -31,7 +42,11 @@ const Signup = () => {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value, nameRef.current.value);
+      await signup(
+        emailRef.current.value,
+        passwordRef.current.value,
+        nameRef.current.value
+      );
       setNotError("Account created successfully. Log In");
       setSubmitted(true);
       nameRef.current.value = "";
@@ -51,9 +66,9 @@ const Signup = () => {
 
   return (
     <>
-      <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
-        <div className="bg-white p-8 rounded shadow-md w-96">
-          <h2 className="text-3xl font-bold mb-8 text-center">Sign Up</h2>
+      <div className="bg-gray-100 h-screen flex flex-col items-center justify-center">
+        <div className="bg-white p-8 pt-6 rounded shadow-md w-96">
+          <h2 className="text-3xl font-bold mb-6 text-center">Sign Up</h2>
           {error && (
             <div
               className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative"
@@ -110,19 +125,19 @@ const Signup = () => {
               >
                 Password
               </label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  className="mt-1 p-2 w-full border rounded"
-                  required
-                  ref={passwordRef}
-                />
-                <span
-                  onClick={togglePasswordVisibility}
-                  className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
-                >
-                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="mt-1 p-2 w-full border rounded"
+                required
+                ref={passwordRef}
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
             </div>
 
             <div className="mb-4">
@@ -153,6 +168,29 @@ const Signup = () => {
               Sign Up
             </button>
           </form>
+          <div className="mt-4 text-center">
+            <div className="flex items-center mb-2">
+              <div className="w-full h-px bg-gray-600"></div>
+              <div className="text-center text-gray-500 px-5 text-sm font-bold">
+                Or
+              </div>
+              <div className="w-full h-px bg-gray-600"></div>
+            </div>
+
+            <button
+              className="w-full px-4 py-2 bg-slate-800 border flex gap-4 justify-center items-center border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+              onClick={handleGoogleSignUp}
+              disabled={loading || notError || isSigningIn}
+            >
+              <img
+                className="w-6 h-6"
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                loading="lazy"
+                alt=""
+              />
+              <span>Sign In With Google</span>
+            </button>
+          </div>
         </div>
         <div className="text-center mt-4">
           Already have an account?{" "}
