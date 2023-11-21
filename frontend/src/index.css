@@ -15,19 +15,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: rgb(154, 100, 255);
-  text-decoration: inherit;
-}
-a:hover {
-  color: #ff4eb5;
-}
 
-h1 {
+
+/* h1 {
   font-size: 7.2em;
-  line-height: 1.1;
-  font-weight: 700;
+  line-height: 50rem;
   user-select: none;
   background: linear-gradient(160deg, rgb(255, 255, 255), rgb(155, 155, 155));
   text-shadow: 0 0 5px rgba(220, 220, 220, 0.137);
@@ -35,7 +27,7 @@ h1 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-}
+} */
 .shadow__btn {
   padding: 10px 20px;
   border: none;
@@ -50,13 +42,13 @@ h1 {
 }
 
 .shadow__btn {
-  background:radial-gradient( rgb(255, 79, 244),rgb(199, 0, 255));
+  background: radial-gradient(rgb(255, 79, 244), rgb(199, 0, 255));
   box-shadow: 0 0 15px rgba(169, 77, 255, 0.36);
 }
 
 .shadow__btn:hover {
-  box-shadow: 0 0 5px rgba(154, 47, 255, 0.36), 0 0 25px rgba(169, 77, 255, 0.36),
-    0 0 50px rgba(169, 77, 255, 0.36);
+  box-shadow: 0 0 5px rgba(154, 47, 255, 0.36),
+    0 0 25px rgba(169, 77, 255, 0.36), 0 0 50px rgba(169, 77, 255, 0.36);
 }
 button:focus,
 button:focus-visible {

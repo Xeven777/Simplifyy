@@ -66,8 +66,8 @@ const Signup = () => {
 
   return (
     <>
-      <div className="bg-gray-100 h-screen flex flex-col items-center justify-center">
-        <div className="bg-white p-8 pt-6 rounded shadow-md w-96">
+      <div className=" h-screen flex flex-col items-center justify-center">
+        <div className=" p-8 pt-6 shadow-md w-96 bg-zinc-800 rounded-md">
           <h2 className="text-3xl font-bold mb-6 text-center">Sign Up</h2>
           {error && (
             <div
@@ -86,11 +86,14 @@ const Signup = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center justify-center w-full "
+          >
+            <div className="mb-4 w-full">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Name
               </label>
@@ -102,10 +105,10 @@ const Signup = () => {
                 ref={nameRef}
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 w-full">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Email
               </label>
@@ -118,10 +121,10 @@ const Signup = () => {
               />
             </div>
 
-            <div className="mb-4 relative">
+            <div className="mb-4 relative w-full">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Password
               </label>
@@ -140,10 +143,10 @@ const Signup = () => {
               </span>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 w-full">
               <label
                 htmlFor="password-confirm"
-                className="block text-sm font-medium text-gray-600"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Confirm Password
               </label>
@@ -178,7 +181,7 @@ const Signup = () => {
             </div>
 
             <button
-              className="w-full px-4 py-2 bg-slate-800 border flex gap-4 justify-center items-center border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+              className="w-full px-4 py-2 bg-zinc-800 border flex gap-4 justify-center items-center border-slate-200 rounded-lg text-slate-100 hover:border-slate-400  hover:bg-zinc-900 hover:shadow transition duration-150"
               onClick={handleGoogleSignUp}
               disabled={loading || notError || isSigningIn}
             >
