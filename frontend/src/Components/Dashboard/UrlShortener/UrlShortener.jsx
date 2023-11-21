@@ -31,7 +31,7 @@ function Home() {
   return (
     <>
       <div className="container">
-        <h1 className="p-6">Simply</h1>
+        <h1 className="p-6 text-6xl">Simply</h1>
         <h3>A simple link shortener!</h3>
         <form onSubmit={handleSubmit}>
           <input

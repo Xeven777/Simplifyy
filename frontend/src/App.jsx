@@ -11,8 +11,8 @@ import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 const App = () => {
   return (
     <>
-      <div className="min-h-screen flex justify-center">
-        <div className="w-full min-h-screen flex justify-center bg-zinc-900">
+      <div className="min-h-screen flex justify-center main-cont">
+        <div className="w-full min-h-screen flex justify-center ">
           <AuthProvider>
             <Router>
               <Routes>
