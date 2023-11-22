@@ -14,14 +14,14 @@ const baseUrl = process.env.NODE_ENV === 'production'
     : "http://localhost:5000";
 
 router.post('/shorten', async (req, res) => {
-    const { longUrl } = req.body;
+    const { longUrl, userId } = req.body;
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
     const urlCode = nanoid(num);
     if (validUrl.isUri(longUrl)) {
         try {
-            let url = await Url.findOne({ longUrl });
+            let url = await Url.findOne({ longUrl, userId });
             if (url) {
                 res.json({
                     shortUrl: url.shortUrl,
@@ -33,10 +33,14 @@ router.post('/shorten', async (req, res) => {
                     longUrl,
                     shortUrl,
                     urlCode,
-                    date: new Date()
+                    userId,
+                    date: new Date(),
                 });
                 await url.save();
-                res.json(url);
+                res.json({
+                    shortUrl: url.shortUrl,
+                    clickCount: url.clickCount,
+                });
             }
         } catch (err) {
             console.error(err);
@@ -45,7 +49,6 @@ router.post('/shorten', async (req, res) => {
     } else {
         res.status(401).json('Invalid long url');
     }
-
-})
+});
 
 module.exports = router;

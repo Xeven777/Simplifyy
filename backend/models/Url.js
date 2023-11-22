@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const urlSchema = new mongoose.Schema({
+    userIdFb: String,
     urlCode: String,
     longUrl: String,
     shortUrl: String,

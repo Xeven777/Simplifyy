@@ -31,6 +31,8 @@ export function AuthProvider({ children }) {
       email,
       password
     );
+    const user = userCredential.user;
+    console.log(user.uid); //user.uid is main
     const newRandomAvatar = getDefaultAvatar();
     await updateProfile(userCredential.user, {
       displayName: name,
@@ -55,7 +57,7 @@ export function AuthProvider({ children }) {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-
+      console.log(user.uid); //user.uid is main
       if (user.photoURL) {
         await updateProfile(user, { photoURL: user.photoURL });
       } else {
@@ -63,19 +65,17 @@ export function AuthProvider({ children }) {
         await updateProfile(user, { photoURL: newRandomAvatar });
         localStorage.setItem("userAvatar", newRandomAvatar);
       }
-  
       setIsSigningIn(false);
+      // return user.uid;
     } catch (error) {
       console.error(error);
       setIsSigningIn(false);
     }
   }
-  
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
-
       if (user) {
         const storedAvatar = localStorage.getItem("userAvatar");
         if (!storedAvatar) {
@@ -91,7 +91,15 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = { currentUser, login, signup, logout, resetPassword, googleSignUp, isSigningIn };
+  const value = {
+    currentUser,
+    login,
+    signup,
+    logout,
+    resetPassword,
+    googleSignUp,
+    isSigningIn,
+  };
 
   return (
     <AuthContext.Provider value={value}>

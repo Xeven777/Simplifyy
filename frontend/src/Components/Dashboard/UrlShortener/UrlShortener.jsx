@@ -11,16 +11,16 @@ function Home() {
     const urlInProd = "https://smply.vercel.app/api/url/shorten";
     const url =
       import.meta.env.VITE_APP_NODE_ENV === "production" ? urlInProd : urlInDev;
-
+    const userId = user.uid;
     try {
       const response = await axios.post(
         url,
         {
           longUrl: longUrl,
+          userId: userId
         },
         { withCredentials: true, crossDomain: true }
       );
-
       setShortenedUrl(response.data.shortUrl);
       setClickCount(response.data.clickCount);
     } catch (error) {
