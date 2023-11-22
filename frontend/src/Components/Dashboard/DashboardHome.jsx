@@ -20,17 +20,17 @@ const DashboardHome = () => {
 
   return (
     <>
-      <div className="bg-gray-100 flex justify-center">
+      <div className=" flex justify-center">
         <div className="flex justify-center items-center gap-16">
           <Link
             to="/dashboard/url-shortener"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-fuchsia-500 hover:bg-fuchsia-700 text-white font-bold py-2 px-4 rounded"
           >
             Url Shortener
           </Link>
           <Link
             to="/dashboard/qr-generator"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-fuchsia-500 hover:bg-fuchsia-700 text-white font-bold py-2 px-4 rounded"
           >
             Qr Generator
           </Link>

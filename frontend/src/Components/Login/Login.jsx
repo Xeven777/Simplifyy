@@ -51,8 +51,8 @@ const Login = () => {
 
   return (
     <>
-      <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
-        <div className="bg-white p-8 rounded shadow-md w-96">
+      <div className=" min-h-screen flex flex-col items-center justify-center">
+        <div className="p-8 rounded shadow-md w-96 bg-neutral-900">
           <h2 className="text-3xl font-bold mb-8 text-center">Log In</h2>
           {error && (
             <div

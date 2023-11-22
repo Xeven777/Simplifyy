@@ -6,19 +6,18 @@ const Home = () => {
       <section className="flex items-center justify-center">
         <div className="grid max-w-screen-xl px-12 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
           <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight md:text-5xl xl:text-6xl leading-snug">
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight md:text-5xl xl:text-6xl leading">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">
                 Simplifyy
               </span>{" "}
               your Business needs
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-              From checkout to global sales tax compliance, companies around the
-              world use Flowbite to simplify their payment stack.
+              From shortenening your URLs to generating QR codes, Simplifyy is the one stop solution for all your business needs.
             </p>
             <Link
               to="/dashboard"
-              className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-fuchsia-700 hover:bg-fuchsia-800 focus:ring-4 focus:ring-fuchsia-300 dark:focus:ring-fuchsia-900"
+              className="inline-flex items-center justify-center px-5 py-3 mr-5 mb-4 text-base font-medium text-center text-white rounded-lg bg-fuchsia-700 hover:bg-fuchsia-800 focus:ring-4 focus:ring-fuchsia-300 dark:focus:ring-fuchsia-900"
             >
               Get started
               <svg
@@ -41,7 +40,7 @@ const Home = () => {
               Sign Up
             </Link>
           </div>
-          <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <div className="lg:mt-0 lg:col-span-5 lg:flex mt-6">
             <img
               src="https://i.imgur.com/a8AfpTN.png"
               alt="mockup"
