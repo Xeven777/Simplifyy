@@ -3,12 +3,16 @@ const router = express.Router();
 const Url = require('../models/Url');
 
 // @route     GET /:userid
-// @desc      get all previous shortened links
-router.get('/api/url/user/:userid', async (req, res) => {
+// @desc      Redget list of all urls for a user
+
+router.get('/:userid', async (req, res) => {
     try {
+        console.log(req.params.userid);
         const url = await Url.find({ userIdFb: req.params.userid });
-        if (url) {
+        if (url.length > 0) {
+            console.log(url);
             return res.json(url);
+            // return res.redirect(url.longUrl);
         }
         else {
             return res.status(404).json('No URL Found');

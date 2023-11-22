@@ -10,17 +10,18 @@ const corsOrigin = process.env.NODE_ENV === 'production'
 
 app.use(cors({
     origin: corsOrigin,
-    methods: 'GET,HEAD,PUT,PATCH,POST',
+    methods: 'GET,HEAD,PUT,PATCH,POST,OPTIONS,DELETE',
     credentials: true,
 }));
-// Connect to database
 connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Define Routes
+app.use('/api/userUrl', require('./routes/users'));
 app.use('/', require('./routes/index'));
 app.use('/api/url', require('./routes/url'));
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -11,7 +11,9 @@ router.get('/:code', async (req, res) => {
         if (url) {
             url.clickCount++;
             await url.save();
-            return res.redirect(url.longUrl);
+            console.log(url);
+            return res.json(url);
+            // return res.redirect(url.longUrl);
         }
         else {
             return res.status(404).json('No URL Found');

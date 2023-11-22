@@ -8,11 +8,10 @@ const AllUrls = () => {
   
   useEffect(() => {
     console.log(currentUser.uid);
-    const apiUrl = "http://localhost:5000/api/userUrl/" + currentUser.uid; 
-
+    const urlInDev = "http://localhost:5000/api/urls";
     const fetchUrls = async () => {
       try {
-        const response = await axios.get(apiUrl);
+        const response = await axios.get('http://localhost:5000/api/urls/'+currentUser.uid); // Replace '/api/urls' with your backend API endpoint
         setUrls(response.data);
         console.log(response.data);
       } catch (error) {
@@ -36,12 +35,3 @@ const AllUrls = () => {
 };
 
 export default AllUrls;
-
-
-// import React from "react";
-
-// const QrGenerator = () => {
-//   return <div className="min-h-screen bg-black">QrGenerator</div>;
-// };
-
-// export default QrGenerator;
