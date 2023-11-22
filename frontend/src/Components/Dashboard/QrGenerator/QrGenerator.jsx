@@ -7,7 +7,8 @@ const AllUrls = () => {
   const [urls, setUrls] = useState([]);
   
   useEffect(() => {
-    const apiUrl = "http://localhost:5000/api/userUrl/" + currentUser.uid; 
+    const baseUrl = import.meta.env.VITE_APP_NODE_ENV === "production" ? "https://smply.vercel.app" : "http://localhost:5000";
+    const apiUrl = baseUrl+"/api/userUrl/" + currentUser.uid; 
     const fetchUrls = async () => {
       try {
         const response = await axios.get(apiUrl);
@@ -19,7 +20,7 @@ const AllUrls = () => {
     };
 
     fetchUrls();
-  }, [currentUser.uid]);  // Include currentUser.uid in the dependency array
+  }, [currentUser.uid]); 
 
   return (
     <div className='pt-20'>

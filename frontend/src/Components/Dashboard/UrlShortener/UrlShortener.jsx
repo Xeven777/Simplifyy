@@ -34,11 +34,11 @@ function Home() {
   return (
     <>
       <div className="container">
-        <h1 className="p-6 text-6xl">Simply</h1>
-        <h3>A simple link shortener!</h3>
+        <h1 className="s-heading px-4">Simply</h1>
+        <h3 className="text-xl font-semibold">A simple link shortener!</h3>
         <form onSubmit={handleSubmit}>
           <input
-          className="bg-neutral-800 focus:bg-stone-950 focus:shadow-lg focus:outline-none focus:ring-1 focus:ring-stone-400 m-3 "
+          className="bg-neutral-800 focus:bg-stone-900 focus:shadow-lg focus:outline-none focus:ring-1 m-3 py-2 px-3 rounded-md"
             type="text"
             name="url"
             value={longUrl}

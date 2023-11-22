@@ -15,17 +15,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* h1 {
+.s-heading {
   font-size: 7.2em;
-  line-height: 50rem;
+  font-weight: 700;
+  letter-spacing: -0.5rem;
   user-select: none;
-  background: linear-gradient(160deg, rgb(255, 255, 255), rgb(155, 155, 155));
+  background: linear-gradient(160deg, rgb(255, 255, 255) 50%, rgba(155, 155, 155, 0.753));
   text-shadow: 0 0 5px rgba(220, 220, 220, 0.137);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-} */
+}
 .shadow__btn {
   padding: 10px 20px;
   border: none;
