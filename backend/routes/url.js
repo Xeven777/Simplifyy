@@ -6,7 +6,7 @@ const router = express.Router();
 
 // @route  POST /api/url/shorten
 // @desc  Create short URL
-const num = 7;
+const num = 9;
 
 //baseUrl for backend url
 const baseUrl = process.env.NODE_ENV === 'production'
@@ -14,14 +14,15 @@ const baseUrl = process.env.NODE_ENV === 'production'
     : "http://localhost:5000";
 
 router.post('/shorten', async (req, res) => {
-    const { longUrl, userId } = req.body;
+    const { longUrl, userIdFb } = req.body;
+    console.log(req.body);
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
     const urlCode = nanoid(num);
     if (validUrl.isUri(longUrl)) {
         try {
-            let url = await Url.findOne({ longUrl, userId });
+            let url = await Url.findOne({ longUrl });
             if (url) {
                 res.json({
                     shortUrl: url.shortUrl,
@@ -33,9 +34,10 @@ router.post('/shorten', async (req, res) => {
                     longUrl,
                     shortUrl,
                     urlCode,
-                    userId,
+                    userIdFb,
                     date: new Date(),
                 });
+                console.log(url);
                 await url.save();
                 res.json({
                     shortUrl: url.shortUrl,

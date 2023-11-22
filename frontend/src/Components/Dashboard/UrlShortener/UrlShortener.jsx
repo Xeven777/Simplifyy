@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../../Context/AuthContext";
 
 function Home() {
+  const { currentUser } = useAuth();
   const [longUrl, setLongUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [clickCount, setClickCount] = useState(0);
@@ -11,13 +13,14 @@ function Home() {
     const urlInProd = "https://smply.vercel.app/api/url/shorten";
     const url =
       import.meta.env.VITE_APP_NODE_ENV === "production" ? urlInProd : urlInDev;
-    const userId = user.uid;
+    const userId = currentUser.uid;
+    console.log(userId);
     try {
       const response = await axios.post(
         url,
         {
           longUrl: longUrl,
-          userId: userId
+          userIdFb: userId
         },
         { withCredentials: true, crossDomain: true }
       );
