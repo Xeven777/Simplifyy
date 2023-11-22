@@ -9,6 +9,7 @@ import { useAuth } from "../../Context/AuthContext";
 import Loading from "../Loading/Loading";
 import UrlShortener from "./UrlShortener/UrlShortener";
 import QrGenerator from "./QrGenerator/QrGenerator";
+import AllUrls from "./QrGenerator/QrGenerator";
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
@@ -52,6 +53,7 @@ const Dashboard = () => {
         <Route path="/dbabout" element={<DashboardAbout />} />
         <Route path="/dbcontact" element={<DashboardContact />} /> 
         <Route path="/qr-generator" element={<QrGenerator />} />
+        <Route path="/user-urls" element={<AllUrls />} />
         <Route path="/url-shortener" element={<UrlShortener />} />
       </Routes>
     </>

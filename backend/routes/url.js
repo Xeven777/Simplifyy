@@ -15,7 +15,6 @@ const baseUrl = process.env.NODE_ENV === 'production'
 
 router.post('/shorten', async (req, res) => {
     const { longUrl, userIdFb } = req.body;
-    console.log(req.body);
     if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
@@ -37,7 +36,6 @@ router.post('/shorten', async (req, res) => {
                     userIdFb,
                     date: new Date(),
                 });
-                console.log(url);
                 await url.save();
                 res.json({
                     shortUrl: url.shortUrl,

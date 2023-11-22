@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../Context/AuthContext";
 
-function Home() {
+function UrlShortener() {
   const { currentUser } = useAuth();
   const [longUrl, setLongUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
@@ -66,4 +66,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default UrlShortener;
