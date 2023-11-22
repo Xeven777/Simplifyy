@@ -7,9 +7,7 @@ const AllUrls = () => {
   const [urls, setUrls] = useState([]);
   
   useEffect(() => {
-    console.log(currentUser.uid);
     const apiUrl = "http://localhost:5000/api/userUrl/" + currentUser.uid; 
-
     const fetchUrls = async () => {
       try {
         const response = await axios.get(apiUrl);
@@ -21,27 +19,22 @@ const AllUrls = () => {
     };
 
     fetchUrls();
-  }, []);
+  }, [currentUser.uid]);  // Include currentUser.uid in the dependency array
 
   return (
-    <div>
+    <div className='pt-20'>
       <h1>All URLs</h1>
-      <ul>
-        {urls.map((url) => (
-          <li key={url.id}>{url.shortenedUrl}</li>
-        ))}
-      </ul>
+      {urls.length > 0 ? (
+        <ul>
+          {urls.map((url) => (
+            <li key={url._id}>{url.shortUrl}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No URLs found for the current user.</p>
+      )}
     </div>
   );
 };
 
 export default AllUrls;
-
-
-// import React from "react";
-
-// const QrGenerator = () => {
-//   return <div className="min-h-screen bg-black">QrGenerator</div>;
-// };
-
-// export default QrGenerator;
