@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
-
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -37,7 +36,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history('/dashboard')
+      history("/dashboard");
     } catch (error) {
       console.error("Signup failed:", error);
       if (error.code === "auth/invalid-login-credentials") {
@@ -52,7 +51,7 @@ const Login = () => {
   return (
     <>
       <div className=" min-h-screen flex flex-col items-center justify-center">
-        <div className="p-8 rounded shadow-md w-96 bg-neutral-900">
+        <div className="p-8 pt-6 shadow-md w-96 bg-neutral-900 rounded-md">
           <h2 className="text-3xl font-bold mb-8 text-center">Log In</h2>
           {error && (
             <div
@@ -63,8 +62,11 @@ const Login = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center justify-center w-full"
+          >
+            <div className="mb-4 w-full">
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-600"
@@ -80,38 +82,40 @@ const Login = () => {
               />
             </div>
 
-            <div className="mb-4 relative">
+            <div className="mb-4 relative w-full">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-600"
               >
                 Password
               </label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  className="mt-1 p-2 w-full border rounded"
-                  required
-                  ref={passwordRef}
-                />
-                <span
-                  onClick={togglePasswordVisibility}
-                  className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
-                >
-                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="mt-1 p-2 w-full border rounded"
+                required
+                ref={passwordRef}
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
             </div>
 
             <button
               disabled={loading}
-              className="w-full bg-blue-500 hover:bg-blue-600 duration-75 text-white p-2 rounded"
+              className="w-full bg-fuchsia-500 hover:bg-fuchsia-600 duration-75 text-white p-2 rounded"
               type="submit"
             >
               Log In
             </button>
           </form>
           <div className="w-100 text-center mt-3">
-            <Link to="/forgot-password" className="text-blue-800">Forgot Password?</Link>
+            <Link to="/forgot-password" className="text-fuchsia-800">
+              Forgot Password?
+            </Link>
           </div>
           <div className="mt-4 text-center">
             <div className="flex items-center mb-2">
@@ -123,7 +127,7 @@ const Login = () => {
             </div>
 
             <button
-              className="w-full px-4 py-2 bg-slate-800 border flex gap-4 justify-center items-center border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+              className="w-full px-4 py-2 bg-slate-800 border flex gap-4 justify-center items-center  border-slate-700 rounded-lg  text-slate-200  hover:border-slate-500 hover:bg-slate-900 hover:text-slate-300 hover:shadow transition duration-150"
               onClick={handleGoogleSignUp}
               disabled={loading || isSigningIn}
             >
@@ -138,7 +142,10 @@ const Login = () => {
           </div>
         </div>
         <div className="text-center mt-4">
-          Need an account? <Link to="/signup" className="text-blue-800">Sign Up</Link>
+          Need an account?{" "}
+          <Link to="/signup" className="text-fuchsia-800">
+            Sign Up
+          </Link>
         </div>
       </div>
     </>

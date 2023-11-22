@@ -165,7 +165,7 @@ const Signup = () => {
               className={`w-full ${
                 submitted && notError
                   ? "bg-gray-500"
-                  : "bg-blue-500 hover:bg-blue-600 duration-75"
+                  : "bg-fuchsia-500 hover:bg-fuchsia-600 duration-75"
               } text-white p-2 rounded`}
               type="submit"
             >
@@ -198,7 +198,7 @@ const Signup = () => {
         </div>
         <div className="text-center mt-4">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-800">
+          <Link to="/login" className="text-fuchsia-800">
             Log In
           </Link>
         </div>
