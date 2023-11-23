@@ -10,7 +10,7 @@ function UrlShortener() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const urlInDev = "http://localhost:5000/api/url/shorten";
-    const urlInProd = "https://smply.vercel.app/api/url/shorten";
+    const urlInProd = "https://siml.vercel.app/api/url/shorten";
     const url =
       import.meta.env.VITE_APP_NODE_ENV === "production" ? urlInProd : urlInDev;
     const userId = currentUser.uid;

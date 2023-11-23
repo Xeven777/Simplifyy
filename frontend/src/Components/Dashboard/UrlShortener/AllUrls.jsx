@@ -7,7 +7,7 @@ const AllUrls = () => {
   const [urls, setUrls] = useState([]);
   
   useEffect(() => {
-    const baseUrl = import.meta.env.VITE_APP_NODE_ENV === "production" ? "https://smply.vercel.app" : "http://localhost:5000";
+    const baseUrl = import.meta.env.VITE_APP_NODE_ENV === "production" ? "https://siml.vercel.app" : "http://localhost:5000";
     const apiUrl = baseUrl+"/api/userUrl/" + currentUser.uid; 
     const fetchUrls = async () => {
       try {
