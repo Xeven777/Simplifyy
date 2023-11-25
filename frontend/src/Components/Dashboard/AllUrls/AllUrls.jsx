@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../Context/AuthContext";
-import UrlCards from "../UrlShortener/UrlCards";
+import UrlCards from "./UrlCards";
 
 const AllUrls = () => {
   const { currentUser } = useAuth();
@@ -41,12 +41,4 @@ const AllUrls = () => {
     </div>
   );
 };
-
 export default AllUrls;
-{
-  /* <ul>
-          {urls.map((url) => (
-            <li key={url._id}>{url.shortUrl}</li>
-          ))}
-        </ul> */
-}

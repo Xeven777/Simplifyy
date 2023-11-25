@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink, faQrcode } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
   const { currentUser, logout } = useAuth();
@@ -153,18 +155,9 @@ const Sidebar = () => {
               </svg>
               <span className="ms-3">Dashboard</span>
             </CustomLink>
-            <CustomLink to="/dashboard/dbabout">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                className="flex-shrink-0 w-5 h-5 text-gray-300 transition duration-75"
-                fill="currentColor"
-                viewBox="0 0 50 50"
-              >
-                <path d="M25,2C12.297,2,2,12.297,2,25s10.297,23,23,23s23-10.297,23-23S37.703,2,25,2z M25,11c1.657,0,3,1.343,3,3s-1.343,3-3,3 s-3-1.343-3-3S23.343,11,25,11z M29,38h-2h-4h-2v-2h2V23h-2v-2h2h4v2v13h2V38z"></path>
-              </svg>
-              <span className="ms-3">About</span>
+            <CustomLink to="/dashboard/qr-gen">
+              <FontAwesomeIcon icon={faQrcode} className="w-5 h-5" />
+              <span className="ms-3">QR Generator</span>
             </CustomLink>
             <li>
               <button
@@ -173,18 +166,9 @@ const Sidebar = () => {
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
                 onClick={handleDropdownToggle}
-              >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-300 transition duration-75"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 21"
-                >
-                  <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
-                </svg>
+              ><FontAwesomeIcon icon={faLink} className="w-5 h-5" />
                 <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
-                  Products
+                  Simply
                 </span>
                 <svg
                   className="w-3 h-3"
@@ -205,10 +189,10 @@ const Sidebar = () => {
               {isDropdownOpen && (
                 <ul id="dropdown-example" className="py-2 space-y-2">
                   <ProductLink to="/dashboard/url-shortener">
-                    Simply
+                    Shorten Links
                   </ProductLink>
-                  <ProductLink to="/dashboard/qr-generator">
-                    QR Generator
+                  <ProductLink to="/dashboard/all-urls">
+                    History
                   </ProductLink>
                 </ul>
               )}
