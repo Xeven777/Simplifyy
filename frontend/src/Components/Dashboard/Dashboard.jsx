@@ -33,13 +33,13 @@ const Dashboard = () => {
           <div className="flex justify-evenly mt-4">
             <Link
               to="/signup"
-              className="w-20 bg-blue-500 hover:bg-blue-600 duration-75 text-white p-2 rounded text-center"
+              className="w-20 bg-fuchsia-500 hover:bg-fuchsia-600 duration-75 text-white p-2 rounded text-center"
             >
               Sign Up
             </Link>
             <Link
               to="/login"
-              className="bg-blue-500 hover:bg-blue-600 w-20 duration-75 text-white p-2 rounded text-center"
+              className="bg-fuchsia-500 hover:bg-fuchsia-600 w-20 duration-75 text-white p-2 rounded text-center"
             >
               Log In
             </Link>
