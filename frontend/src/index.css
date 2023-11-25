@@ -14,7 +14,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+body{
+  cursor: url(./assets/cursor.webp), auto;
+}
 .s-heading {
   font-size: 7.2em;
   font-family: "Inter";
@@ -99,7 +101,7 @@ input:active {
   border: 1px solid #6d4794;
 }
 
-.result {
+/* .result {
   margin: 2rem;
   padding: 10px;
   font-family: "Montserrat";
@@ -112,7 +114,7 @@ input:active {
   background: linear-gradient(50deg, black, rgb(24, 24, 24), black);
   box-shadow: 0 0 16px #6d4794c5;
   transform: translateY(-2px);
-}
+} */
 .main-cont {
   background-size: 100% 100%;
   background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
