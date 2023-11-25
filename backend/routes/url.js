@@ -10,7 +10,7 @@ const num = 9;
 
 //baseUrl for backend url
 const baseUrl = process.env.NODE_ENV === 'production'
-    ? "https://siml.vercel.app"
+    ? "https://sl8.vercel.app"
     : "http://localhost:5000";
 
 router.post('/shorten', async (req, res) => {
