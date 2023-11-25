@@ -18,15 +18,17 @@ const QrGen = () => {
     }
   };
 
-
   return (
     <div className="pt-[10rem]">
       <input
         type="text"
+        placeholder="Enter URL/Text to encode to QR"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button onClick={generateQrCode}>Generate QR Code</button>
+      <button className="shadow__btn" onClick={generateQrCode}>
+        Generate QR Code
+      </button>
       {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" />}
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faQrcode } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faLink, faQrcode } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
   const { currentUser, logout } = useAuth();
@@ -70,12 +70,7 @@ const Sidebar = () => {
                 </svg>
               </button>
               <Link to="/" className="flex pl-4 items-center justify-center">
-                <img
-                  src=""
-                  className="h-12 pt-1"
-                  loading="lazy"
-                  alt=""
-                />
+                <img src="" className="h-12 pt-1" loading="lazy" alt="" />
                 <span className="self-center text-2xl font-bold whitespace-nowrap m-auto ">
                   Simplifyy
                 </span>
@@ -157,7 +152,11 @@ const Sidebar = () => {
             </CustomLink>
             <CustomLink to="/dashboard/qr-gen">
               <FontAwesomeIcon icon={faQrcode} className="w-5 h-5" />
-              <span className="ms-3">QR Generator</span>
+              <span className="ms-3">QRystal</span>
+            </CustomLink>
+            <CustomLink to="/dashboard/url-shortener">
+              <FontAwesomeIcon icon={faLink} className="w-5 h-5" />
+              <span className="ms-3">Simply</span>
             </CustomLink>
             <li>
               <button
@@ -166,9 +165,10 @@ const Sidebar = () => {
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
                 onClick={handleDropdownToggle}
-              ><FontAwesomeIcon icon={faLink} className="w-5 h-5" />
+              >
+                <FontAwesomeIcon icon={faCalendarAlt} className="w-5 h-5" />
                 <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
-                  Simply
+                  History
                 </span>
                 <svg
                   className="w-3 h-3"
@@ -188,12 +188,10 @@ const Sidebar = () => {
               </button>
               {isDropdownOpen && (
                 <ul id="dropdown-example" className="py-2 space-y-2">
-                  <ProductLink to="/dashboard/url-shortener">
-                    Shorten Links
-                  </ProductLink>
-                  <ProductLink to="/dashboard/all-urls">
-                    History
-                  </ProductLink>
+                  {/* <ProductLink to="/dashboard/url-shortener">
+                    Past QRs
+                  </ProductLink> */}
+                  <ProductLink to="/dashboard/all-urls">Past URLs</ProductLink>
                 </ul>
               )}
             </li>
