@@ -1,46 +1,53 @@
 const express = require('express');
 const validUrl = require('valid-url');
-const Url = require('../models/Url');
+const Qr = require('../models/Qrs');
 const { nanoid } = require('nanoid');
+const QRcode = require('qrcode');
 const router = express.Router();
 
-// @route  POST /api/url/shorten
+// @route  POST /api/qr
 // @desc  Create short URL
 
-const num = 10;
+const num = 12;
 
 //baseUrl for backend url
 const baseUrl = process.env.NODE_ENV === 'production'
     ? "https://sl8.vercel.app"
     : "http://localhost:5000";
 
-router.post('/shorten', async (req, res) => {
+router.post('/', async (req, res) => {
     const { longUrl, userIdFb } = req.body;
     if (!validUrl.isUri(baseUrl)) {
-        return res.status(401).json('Invalid base url');
+        return res.status(401).json('Invalid url');
     }
     const urlCode = nanoid(num);
     if (validUrl.isUri(longUrl)) {
         try {
-            let url = await Url.findOne({ longUrl });
-            if (url) {
+            let qrs = await Qr.findOne({ longUrl });
+            if (qrs) {
                 res.json({
-                    shortUrl: url.shortUrl,
-                    clickCount: url.clickCount,
+                    qrCode: qrs.qrCode,
+                    shortQRUrl: qrs.shortQRUrl,
+                    visitCount: qrs.visitCount,
                 });
             } else {
-                const shortUrl = baseUrl + '/' + urlCode;
-                url = new Url({
+                const shortQRUrl = baseUrl + '/QR/' + urlCode;
+                //qr logic goes here
+                const qrCodeBuffer = await QRcode.toBuffer(shortQRUrl);
+                const qrCode = qrCodeBuffer.toString("base64");
+                qrs = new Qr({
                     longUrl,
-                    shortUrl,
                     urlCode,
+                    shortQRUrl,
+                    qrCode,
                     userIdFb,
                     date: new Date(),
                 });
-                await url.save();
+                await qrs.save();
                 res.json({
-                    shortUrl: url.shortUrl,
-                    clickCount: url.clickCount,
+                    shortQRUrl: qrs.shortQRUrl,
+                    qrCode: qrs.qrCode,
+                    visitCount: qrs.visitCount,
                 });
             }
         } catch (err) {

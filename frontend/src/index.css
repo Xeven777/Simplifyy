@@ -4,8 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  font-family: "Montserrat", "Atkinson Hyperlegible", "Montserrat", system-ui,
-    Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", "Atkinson Hyperlegible", system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: white;
@@ -14,7 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body{
+body {
   cursor: url(./assets/cursor.webp), auto;
 }
 .s-heading {
@@ -116,15 +115,16 @@ input:active {
   transform: translateY(-2px);
 } */
 .main-cont {
-  background-size: 100% 100%;
-  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
   background-image: radial-gradient(
       15% 35% at 78% 103%,
-      #e943ff30 0%,
+      #e943ff1f 0%,
       #073aff00 100%
     ),
-    radial-gradient(30% 35% at 12% 107%, #ff43db26 0%, #073aff00 100%),
-    radial-gradient(35% 35% at 56% 22%, #43e0ff1a 0%, #073aff00 100%),
-    radial-gradient(15% 35% at -1% 13%, #e943ff30 0%, #073aff00 100%),
-    radial-gradient(142% 91% at 111% 84%, #201e1eff 0%, #04091dff 100%);
+    radial-gradient(
+      30% 35% at 12% 107%,
+      rgba(255, 66, 220, 0.14) 0%,
+      #073aff00 100%
+    ),
+    radial-gradient(15% 35% at -1% 13%, #e943ff1a 0%, #073aff00 100%),
+    radial-gradient(142% 91% at 111% 84%, #201e1eff 0%, rgb(9, 10, 12) 100%);
 }

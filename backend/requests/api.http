@@ -1,4 +1,4 @@
-POST http://localhost:5000/api/url/shorten 
+POST http://localhost:5000/api/qr
 Content-Type: application/json
 
 {

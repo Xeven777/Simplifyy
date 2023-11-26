@@ -24,7 +24,6 @@ function UrlShortener() {
     const url =
       import.meta.env.VITE_APP_NODE_ENV === "production" ? urlInProd : urlInDev;
     const userId = currentUser.uid;
-    console.log(userId);
     try {
       const response = await axios.post(
         url,
