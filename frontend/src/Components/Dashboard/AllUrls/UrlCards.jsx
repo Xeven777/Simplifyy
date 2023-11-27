@@ -7,10 +7,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 const UrlCards = ({ url }) => {
   const [data, setData] = useState(null);
-  const [refresh, setRefresh] = useState(0);
   const apiKey = import.meta.env.VITE_APP_JSONLINK;
   const apiUrl = `https://jsonlink.io/api/extract?url=${url.longUrl}&api_key=${apiKey}`;
-
+  const baseUrl =
+      import.meta.env.VITE_APP_NODE_ENV === "production"
+        ? "https://sl8.vercel.app"
+        : "http://localhost:5000";
   useEffect(() => {
     fetch(apiUrl)
       .then((response) => {
@@ -25,9 +27,27 @@ const UrlCards = ({ url }) => {
       .catch((error) => {
         console.error("An error occurred:", error);
       });
-  }, [refresh]);
+  }, []);
+  const deleteUrl = async (id) => {
+    const api = baseUrl + "/api/url/delete/" + id;
+    try {
+      const response = await fetch(api, { method: "DELETE" });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }else{
+        alert("URL deleted successfully!");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
   const dateObj = new Date(url.date);
-  const favicon = data && data.favicon ? data.favicon : "";
+  const favicon =
+    data && data.favicon
+      ? data.favicon
+      : "https://static.vecteezy.com/system/resources/previews/000/366/438/original/home-vector-icon.jpg";
   const day = dateObj.toDateString();
   const time = dateObj.toLocaleTimeString();
   const title = data && data.title ? data.title : url.longUrl;
@@ -36,7 +56,7 @@ const UrlCards = ({ url }) => {
   const imageUrl =
     data && data.images && data.images.length > 0
       ? data.images[0]
-      : "https://images.unsplash.com/photo-1599422314077-f4dfdaa4cd09?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGFic3RyYWN0JTIwYXJ0fGVufDB8fDB8fHww";
+      : "https://images.pexels.com/photos/2693200/pexels-photo-2693200.jpeg?auto=compress&cs=tinysrgb&w=600";
 
   return (
     <div className="p-6 border rounded-lg shadow bg-slate-800 border-slate-800 flex overflow-hidden flex-col md:flex-row backdrop-blur bg-opacity-30 z-0">
@@ -72,7 +92,10 @@ const UrlCards = ({ url }) => {
           Copy Link
           <FontAwesomeIcon icon={faCopy} className="ms-2" />
         </button>
-        <button className="inline-flex items-center px-4 pt-2 pb-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 ml-2">
+        <button
+          className="inline-flex items-center px-4 pt-2 pb-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 ml-2"
+          onClick={() => deleteUrl(url._id)}
+        >
           <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
@@ -110,7 +133,6 @@ const UrlCards = ({ url }) => {
             {url.clickCount}
           </li>
         </ul>
-        
       </div>
     </div>
   );
