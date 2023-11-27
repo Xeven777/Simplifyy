@@ -131,7 +131,7 @@ const Sidebar = () => {
 
       <aside
         id="logo-sidebar"
-        className={`w-64 fixed inset-y-0 left-0 pt-[4.5rem] flex-shrink-0 bg-gray-900 text-zinc-100 transition-transform duration-300 ease-in-out transform ${
+        className={`w-64 fixed inset-y-0 left-0 pt-[4.5rem] flex-shrink-0 bg-gray-900 text-zinc-100 transition-transform duration-300 ease-in-out transform z-10 ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

@@ -39,7 +39,7 @@ const UrlCards = ({ url }) => {
       : "https://images.unsplash.com/photo-1599422314077-f4dfdaa4cd09?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGFic3RyYWN0JTIwYXJ0fGVufDB8fDB8fHww";
 
   return (
-    <div className="p-6 border rounded-lg shadow bg-slate-800 border-slate-700 flex overflow-hidden flex-col md:flex-row ">
+    <div className="p-6 border rounded-lg shadow bg-slate-800 border-slate-800 flex overflow-hidden flex-col md:flex-row backdrop-blur bg-opacity-30 z-0">
       <div className="md:min-w-[180px] lg:max-w-[210px] mb-5 md:mb-2 md:me-3">
         <img
           src={imageUrl}
