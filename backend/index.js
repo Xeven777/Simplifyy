@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Define Routes
 app.use('/api/userUrl', require('./routes/users'));
+app.use('/api/qr/userUrl', require('./routes/qrUsers'));
 app.use('/', require('./routes/index'));
 app.use('/api/qr', require('./routes/qrs'));
 app.use('/api/url', require('./routes/url'));

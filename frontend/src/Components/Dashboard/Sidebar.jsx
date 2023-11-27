@@ -188,9 +188,9 @@ const Sidebar = () => {
               </button>
               {isDropdownOpen && (
                 <ul id="dropdown-example" className="py-2 space-y-2">
-                  {/* <ProductLink to="/dashboard/url-shortener">
+                  <ProductLink to="/dashboard/all-qrs">
                     Past QRs
-                  </ProductLink> */}
+                  </ProductLink>
                   <ProductLink to="/dashboard/all-urls">Past URLs</ProductLink>
                 </ul>
               )}

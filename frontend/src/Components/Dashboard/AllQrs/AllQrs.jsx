@@ -1,44 +1,44 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../Context/AuthContext";
-import UrlCards from "./UrlCards";
+import QrCard from "./QrCard";
 
-const AllUrls = () => {
+const AllQrs = () => {
   const { currentUser } = useAuth();
-  const [urls, setUrls] = useState([]);
+  const [qrs, setQrs] = useState([]);
 
   useEffect(() => {
     const baseUrl =
       import.meta.env.VITE_APP_NODE_ENV === "production"
         ? "https://sl8.vercel.app"
         : "http://localhost:5000";
-    const apiUrl = baseUrl + "/api/userUrl/" + currentUser.uid;
-    const fetchUrls = async () => {
+    const apiUrl = baseUrl + "/api/qr/userUrl/" + currentUser.uid;
+    const fetchQrs = async () => {
       try {
         const response = await axios.get(apiUrl);
-        setUrls(response.data);
+        setQrs(response.data);
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching URLs:", error);
       }
     };
 
-    fetchUrls();
+    fetchQrs();
   }, []);
 
   return (
     <div className="pt-20">
-      <h1 className="text-4xl font-bold text-center p-5">All URLs</h1>
-      {urls.length > 0 ? (
-        <div className="cards-cont grid grid-cols-1 md:grid-cols-2 gap-4 items-center px-4 md:px-6 lg:px-10 py-5">
-          {urls.map((url) => (
-            <UrlCards url={url} />
+      <h1 className="text-4xl font-bold text-center p-5">All QRs</h1>
+      {qrs.length > 0 ? (
+        <div className="cards-cont grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center px-4 md:px-6 lg:px-10 py-5">
+          {qrs.map((qr) => (
+            <QrCard qr={qr} />
           ))}
         </div>
       ) : (
-        <p>No URLs found for the current user.</p>
+        <p>No QRs found for the current user.</p>
       )}
     </div>
   );
 };
-export default AllUrls;
+export default AllQrs;

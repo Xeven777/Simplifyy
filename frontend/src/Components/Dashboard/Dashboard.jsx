@@ -8,6 +8,7 @@ import Loading from "../Loading/Loading";
 import UrlShortener from "./UrlShortener/UrlShortener";
 import AllUrls from "./AllUrls/AllUrls";
 import QrGen from "./QrGen";
+import AllQrs from "./AllQrs/AllQrs";
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
@@ -58,6 +59,7 @@ const Dashboard = () => {
         <Route path="/dbcontact" element={<DashboardContact />} />
         <Route path="/all-urls" element={<AllUrls />} />
         <Route path="/url-shortener" element={<UrlShortener />} />
+        <Route path="/all-qrs" element={<AllQrs />} />
       </Routes>
     </>
   );

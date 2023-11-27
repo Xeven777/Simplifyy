@@ -1,7 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../Context/AuthContext";
 
 function UrlShortener() {
@@ -9,6 +7,8 @@ function UrlShortener() {
   const [longUrl, setLongUrl] = useState("");
   const [qr, setQr] = useState("");
   const [qrURL, setQrURL] = useState("");
+  const [qrimage, setQrImage] = useState("");
+  const [qrsvg, setQrSvg] = useState("");
   const [visitCount, setVisitCount] = useState("");
   const [loading, setLoading] = useState(false);
   // const copyToClipboard = async () => {
@@ -38,7 +38,17 @@ function UrlShortener() {
       );
       setQrURL(response.data.shortQRUrl);
       setQr(response.data.qrCode);
+      console.log(response.data);
       setVisitCount(response.data.visitCount);
+      const byteCharacters = atob(qr);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "image/png" });
+      const blobsvg = new Blob([byteArray], { type: "image/svg+xml" });
+      setQrImage(URL.createObjectURL(blob));
     } catch (error) {
       console.error("Error generating your QR :", error);
     } finally {
@@ -66,7 +76,7 @@ function UrlShortener() {
           />
           <button
             className="shadow__btn text-zinc-50 px-6 shadow-lg text-xl active:scale-95 m-5 cursor-crosshair"
-            type="submit" 
+            type="submit"
           >
             Generate
           </button>
@@ -80,11 +90,15 @@ function UrlShortener() {
                   href={qrURL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-fuchsia-700 bg-opacity-20 py-1 px-3 border-purple-900 border-[1px] w-[360px] hover:text-fuchsia-400 hover:bg-opacity-10 transition text-md"
+                  className="bg-fuchsia-700 bg-opacity-20 py-1 px-3 border-purple-900 border-[1px] hover:text-fuchsia-400 hover:bg-opacity-10 transition text-md"
                 >
                   <img src={`data:image/png;base64,${qr}`} alt="QR Code" />
                 </a>
 
+                <a href={qrimage} download="QRystalCode.png">
+                  {" "}
+                  Download{" "}
+                </a>
               </div>
             </div>
           </>
