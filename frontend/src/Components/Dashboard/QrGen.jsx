@@ -8,7 +8,6 @@ function UrlShortener() {
   const [qr, setQr] = useState("");
   const [qrURL, setQrURL] = useState("");
   const [qrimage, setQrImage] = useState("");
-  const [qrsvg, setQrSvg] = useState("");
   const [visitCount, setVisitCount] = useState("");
   const [loading, setLoading] = useState(false);
   // const copyToClipboard = async () => {
@@ -27,6 +26,7 @@ function UrlShortener() {
     const url =
       import.meta.env.VITE_APP_NODE_ENV === "production" ? urlInProd : urlInDev;
     const userId = currentUser.uid;
+  
     try {
       const response = await axios.post(
         url,
@@ -37,17 +37,21 @@ function UrlShortener() {
         { withCredentials: true, crossDomain: true }
       );
       setQrURL(response.data.shortQRUrl);
-      setQr(response.data.qrCode);
       console.log(response.data);
       setVisitCount(response.data.visitCount);
-      const byteCharacters = atob(qr);
+  
+      const byteCharacters = atob(response.data.qrCode);
       const byteNumbers = new Array(byteCharacters.length);
+  
       for (let i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
+  
       const byteArray = new Uint8Array(byteNumbers);
       const blob = new Blob([byteArray], { type: "image/png" });
-      const blobsvg = new Blob([byteArray], { type: "image/svg+xml" });
+  
+      setQr(response.data.qrCode); 
+  
       setQrImage(URL.createObjectURL(blob));
     } catch (error) {
       console.error("Error generating your QR :", error);
@@ -57,6 +61,7 @@ function UrlShortener() {
       }, 1500);
     }
   };
+  
 
   return (
     <>
@@ -95,7 +100,7 @@ function UrlShortener() {
                   <img src={`data:image/png;base64,${qr}`} alt="QR Code" />
                 </a>
 
-                <a href={qrimage} download="QRystalCode.png">
+                <a href={qrimage} download="QRystal-Code.png">
                   {" "}
                   Download{" "}
                 </a>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-
+import circles from "../../assets/circles.svg";
 const DashboardHome = () => {
   const { currentUser } = useAuth();
   const currentTime = new Date();
@@ -9,30 +9,37 @@ const DashboardHome = () => {
   let greeting;
 
   if (currentHour < 12) {
-    greeting = "Good morning";
-  } else if (currentHour < 18) {
-    greeting = "Good afternoon";
+    greeting = `Heyyyo 😊 ${currentUser.displayName}! Good morning ! Ready for a new day?!⚡😉`;
+  } else if (currentHour < 19) {
+    greeting = `Holaa 😊 ${currentUser.displayName}! Good afternoon ! Keep the Good Work up 👏🏻😁 `;
   } else {
-    greeting = "Good evening";
+    greeting = `Hello ${currentUser.displayName} 😊 ! How was was your day ? Hope it went well 🥰`;
   }
-
-  const dynamicGreeting = `${greeting}, ${currentUser.displayName}. 👋`;
 
   return (
     <>
-      <div className=" flex justify-center">
-        <div className="flex justify-center items-center gap-16">
+      <div className="lg:w-[70%] max-w-[90%]">
+        <div className="greeting-box text-left md:w-full mt-36 md:pr-[100px] h-fit md:px-8 prounded-xl relative overflow-hidden rounded-xl py-6 px-2 leading-relaxed">
+          <h1 className="text-3xl font-medium text-zinc-100 ">{greeting}</h1>
+          <h2 className="text-2xl mt-6">
+            What do you want to do today?
+          </h2>
+        </div>
+
+        <div className="grid gap-4 py-8 grid-cols-2">
           <Link
             to="/dashboard/url-shortener"
-            className="bg-fuchsia-500 hover:bg-fuchsia-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-gray-900 h-48 bg-opacity-30 border-s border-e border-slate-950 transition hover:border-slate-700 text-white font-bold px-6 rounded-2xl text-3xl py-10 simple-box"
           >
-            Url Shortener
+            SIMPLY
+            <p className="text-sm font-normal py-4">Shorten Links Now</p>
           </Link>
           <Link
             to="/dashboard/qr-gen"
-            className="bg-fuchsia-500 hover:bg-fuchsia-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-gray-900 h-48 bg-opacity-30 border-s border-e border-slate-950 transition hover:border-slate-700 text-white font-bold px-6 rounded-2xl text-3xl py-10 qrystal-box "
           >
-            Qr Generator
+            QRystal
+            <p className="text-sm font-normal py-4">Make QR codes now</p>
           </Link>
         </div>
       </div>
