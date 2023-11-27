@@ -1,10 +1,26 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/" },
-    { "source": "/about", "destination": "/about" },
-    { "source": "/dashboard/(.*)", "destination": "/dashboard" },
-    { "source": "/signup", "destination": "/signup" },
-    { "source": "/login", "destination": "/login" },
-    { "source": "/forgot-password", "destination": "/forgot-password" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/index.html"
+    }
   ]
 }
