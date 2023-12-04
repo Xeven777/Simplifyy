@@ -5,7 +5,7 @@ const qrSchema = new mongoose.Schema({
     shortQRUrl: String,
     urlCode: String,
     qrCode: String,
-    date: { type: String, default: Date.now },
+    date: { type: Date, default: Date.now },
     visitCount: {
         type: Number,
         default: 0,
