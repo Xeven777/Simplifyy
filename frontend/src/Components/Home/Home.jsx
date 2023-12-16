@@ -1,52 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
 const Home = () => {
   return (
     <>
-      <section className="flex items-center justify-center">
-        <div className="grid max-w-screen-xl px-12 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-          <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight md:text-5xl xl:text-6xl leading">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">
-                Simplifyy
-              </span>{" "}
-              your Business needs
-            </h1>
-            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-              From shortenening your URLs to generating QR codes, Simplifyy is the one stop solution for all your business needs.
-            </p>
-            <Link
-              to="/dashboard"
-              className="inline-flex items-center justify-center px-5 py-3 mr-5 mb-4 text-base font-medium text-center text-white rounded-lg bg-fuchsia-700 hover:bg-fuchsia-800 focus:ring-4 focus:ring-fuchsia-300 dark:focus:ring-fuchsia-900"
-            >
-              Get started
-              <svg
-                className="w-5 h-5 ml-2 -mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </Link>
-            <Link
-              to="/signup"
-              className="inline-flex items-center justify-center px-7 py-3 text-base font-medium text-center text-gray-100 border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-800 focus:ring-4 focus:ring-gray-100 "
-            >
-              Sign Up
-            </Link>
+      <section className=" relative flex flex-col gap-4 pt-28 items-center md:items-center">
+        <article className="rounded-full p-[2px] text-sm bg-gradient-to-r from-blue-500 to-purple-600">
+          <div className="rounded-full px-3 py-1 bg-slate-900">
+            New Beta Release✨
           </div>
-          <div className="lg:mt-0 lg:col-span-5 lg:flex mt-6">
-            <img
-              src="https://i.imgur.com/a8AfpTN.png"
-              alt="mockup"
-              className="drop-shadow-lg"
-            />
-          </div>
+        </article>
+        <div className="w-56 blur-[100px] rounded-full h-32 absolute  bg-purple-700/40 top-56" />
+        <h2 className=" text-zinc-100 text-3xl sm:text-6xl sm:max-w-[750px] text-center font-bold">
+          Simplifyy your Business Needs
+        </h2>
+
+        <p className="text-purple-100/70 text-xl sm:max-w-[450px] text-center ">
+          Simplify the process of managing your business with our all-in-one
+          platform.
+        </p>
+        <div>
+          <Link
+            to="/signup"
+            className="bg-gradient-to-tr from-blue-800 to-purple-600 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-xl active:scale-90 transition duration-200 hover:bg-gradient-to-r"
+          >
+            Sign-up
+          </Link>
+          <Link
+            to="/dashboard"
+            className="text-white px-8 py-3 rounded-xl shadow-md hover:shadow-xl active:scale-90 transition duration-200 border border-purple-600 hover:border-purple-100"
+          >
+            Dashboard <FontAwesomeIcon icon={faArrowRight} />
+          </Link>
         </div>
       </section>
     </>

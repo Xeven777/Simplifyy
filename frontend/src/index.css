@@ -14,8 +14,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+::selection {
+  background: #7512d8;
+  color: #fff;
+  text-shadow: 0 0 10px #f5edfd91;
+}
+
 body {
   cursor: url(./assets/cursor.webp), auto;
+}
+h2,
+h1,
+h3,
+h4,
+h5,
+h6 {
+  text-shadow: 0 0 17px #f5edfd1e;
 }
 .s-heading {
   font-size: 7.2em;
@@ -61,18 +75,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
 .container {
   display: flex;
   flex-direction: column;
@@ -127,7 +129,11 @@ input:active {
       #073aff00 100%
     ),
     radial-gradient(15% 35% at -1% 13%, #e943ff1a 0%, #073aff00 100%),
-    radial-gradient(142% 91% at 111% 84%, #201e1eff 0%, rgb(14, 16, 20) 100%);
+    radial-gradient(
+      142% 91% at 111% 84%,
+      rgb(16, 20, 26) 0%,
+      rgb(16, 18, 24) 100%
+    );
 }
 .greeting-box {
   background: linear-gradient(
