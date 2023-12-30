@@ -68,7 +68,7 @@ const UrlCards = ({ url }) => {
         deleted ? "hidden" : ""
       }`}
     >
-      <div className="md:min-w-[180px] lg:max-w-[210px] mb-5 md:mb-2 md:me-3">
+      <div className="md:min-w-[180px] lg:max-w-[210px] mb-5 md:mb-2 md:me-3 ">
         <img
           src={imageUrl}
           alt="thumbnail"
@@ -96,7 +96,13 @@ const UrlCards = ({ url }) => {
             />
           </svg>
         </a>
-        <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 mr-3">
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText(url.shortUrl);
+            alert("Copied to Clipboard");
+          }}
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 mr-3"
+        >
           Copy Link
           <FontAwesomeIcon icon={faCopy} className="ms-2" />
         </button>
