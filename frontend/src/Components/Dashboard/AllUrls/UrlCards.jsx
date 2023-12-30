@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -6,6 +6,7 @@ import {
   faCopy,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+
 const UrlCards = ({ url }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -63,7 +64,7 @@ const UrlCards = ({ url }) => {
 
   return (
     <div
-      className={`p-6 border rounded-lg shadow bg-slate-800 border-slate-800 flex overflow-hidden flex-col md:flex-row backdrop-blur bg-opacity-30 z-0 ${
+      className={`p-6 border rounded-lg shadow bg-slate-900 border-slate-800 flex overflow-hidden flex-col md:flex-row backdrop-blur bg-opacity-30 z-0 ${
         deleted ? "hidden" : ""
       }`}
     >

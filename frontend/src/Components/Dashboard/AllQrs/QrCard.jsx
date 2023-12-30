@@ -1,22 +1,95 @@
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChartLine,
+  faCircle,
+  faCopy,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+
 const QrCard = ({ qr }) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const apiKey = import.meta.env.VITE_APP_JSONLINK;
+  const apiUrl = `https://jsonlink.io/api/extract?url=${qr.longUrl}&api_key=${apiKey}`;
+  const baseUrl =
+    import.meta.env.VITE_APP_NODE_ENV === "production"
+      ? "https://sl8.vercel.app"
+      : "http://localhost:5000";
+  useEffect(() => {
+    const fetchMetadata = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    fetchMetadata();
+  }, []);
+  const deleteUrl = async (id) => {
+    setLoading(true);
+    const api = baseUrl + "/api/qr/delete/" + id;
+    try {
+      const response = await fetch(api, { method: "DELETE" });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      } else {
+        setLoading(false);
+        setDeleted(true);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+  const dateObj = new Date(qr.date);
+  const favicon =
+    data && data.favicon ? data.favicon : "../../../assets/icons8-link-30.png";
+  const day = dateObj.toDateString();
+  const time = dateObj.toLocaleTimeString();
+  const title = data && data.title ? data.title : qr.longUrl;
+  const siteDesc =
+    data && data.description ? data.description : "Shortened using Simply";
+  const imageUrl =
+    data && data.images && data.images.length > 0
+      ? data.images[0]
+      : "https://images.unsplash.com/photo-1649290098499-f4148542f2e0?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
   return (
-    <div className="max-w-sm p-6 border  rounded-lg shadow bg-slate-800 border-slate-700 ">
+    <div
+      className={`max-w-sm p-6 border h-full rounded-lg shadow relative z-10 overflow-hidden`}
+    >
+      <img
+        src={imageUrl}
+        alt=""
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10 rounded-lg blur-lg brightness-75 opacity-70"
+      />
       <a href={qr.longUrl} target="_blank">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-zinc-50 line-clamp-2 pb-3">
+        <h5 className=" text-2xl font-bold tracking-tight text-zinc-50 line-clamp-2 mb-4">
           {qr.longUrl}
         </h5>
       </a>
-      <p className="mb-3 font-normal text-zinc-300 line-clamp-1">
+      <a
+        href={qr.shortQRUrl}
+        className="mb-3 font-normal text-zinc-100 line-clamp-1"
+      >
         {qr.shortQRUrl}
-      </p>
-      <p className="mb-3 font-normal text-zinc-300">
+      </a>
+      <p className="mb-3 font-normal text-zinc-100">
         Unique Short Code : {qr.urlCode}
       </p>
-      <p className="mb-3 font-normal text-zinc-300">
+      <p className="mb-3 font-normal text-zinc-100">
         Total Clicks : {qr.visitCount}
       </p>
       <a
-        href={qr.shortUrl}
+        href={qr.shortQRUrl}
         className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-fuchsia-700 rounded-lg hover:bg-fuchsia-800 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 "
       >
         Visit link
