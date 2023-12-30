@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-import circles from "../../assets/circles.svg";
+
 const DashboardHome = () => {
   const { currentUser } = useAuth();
   const currentTime = new Date();

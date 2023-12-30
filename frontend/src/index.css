@@ -40,7 +40,7 @@ h6 {
   background: linear-gradient(
     160deg,
     rgb(255, 255, 255) 50%,
-    rgba(155, 155, 155, 0.753)
+    rgba(133, 149, 165, 0.753)
   );
   text-shadow: 0 0 5px rgba(220, 220, 220, 0.137);
   -webkit-background-clip: text;
@@ -103,20 +103,6 @@ input:active {
   border: 1px solid #6d4794;
 }
 
-/* .result {
-  margin: 2rem;
-  padding: 10px;
-  font-family: "Montserrat";
-  background: linear-gradient(20deg, black, rgb(24, 24, 24), black);
-  box-shadow: 0 0 16px #6d479444;
-  border-radius: 1.5rem;
-  transition: all 0.3s ease-in-out;
-}
-.result:hover {
-  background: linear-gradient(50deg, black, rgb(24, 24, 24), black);
-  box-shadow: 0 0 16px #6d4794c5;
-  transform: translateY(-2px);
-} */
 .main-cont {
   background-image: radial-gradient(
       15% 35% at 78% 103%,
@@ -133,6 +119,24 @@ input:active {
       142% 91% at 111% 84%,
       rgb(16, 20, 26) 0%,
       rgb(16, 18, 24) 100%
+    );
+}
+.main-cont2 {
+  background-image: radial-gradient(
+      15% 35% at 78% 103%,
+      #e943ff1f 0%,
+      #073aff00 100%
+    ),
+    radial-gradient(
+      30% 35% at 12% 107%,
+      rgba(255, 66, 220, 0.14) 0%,
+      #073aff00 100%
+    ),
+    radial-gradient(15% 35% at -1% 13%, #e943ff1a 0%, #073aff00 100%),
+    radial-gradient(
+      142% 91% at 111% 84%,
+      rgb(16, 20, 26) 0%,
+      rgba(12, 7, 27, 0.904) 100%
     );
 }
 .greeting-box {

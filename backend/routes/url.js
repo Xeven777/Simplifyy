@@ -58,6 +58,7 @@ router.post('/shorten', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
     try {
         await Url.findByIdAndDelete(req.params.id);
+        res.json({ ok: true })
     } catch (err) {
         console.error('Error deleting URL:', err);
         res.status(500).json({ error: 'An error occurred while deleting the URL' });

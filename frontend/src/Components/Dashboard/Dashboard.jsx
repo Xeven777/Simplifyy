@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { Route, Routes, Link } from "react-router-dom";
 import DashboardHome from "./DashboardHome";
-import DashboardContact from "./DashboardContact";
 import { useAuth } from "../../Context/AuthContext";
 import Loading from "../Loading/Loading";
 import UrlShortener from "./UrlShortener/UrlShortener";
 import AllUrls from "./AllUrls/AllUrls";
 import QrGen from "./QrGen";
 import AllQrs from "./AllQrs/AllQrs";
+import Pricing from "./Pricing";
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
@@ -55,8 +55,8 @@ const Dashboard = () => {
       <Sidebar />
       <Routes>
         <Route path="/" element={<DashboardHome />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/qr-gen" element={<QrGen />} />
-        <Route path="/dbcontact" element={<DashboardContact />} />
         <Route path="/all-urls" element={<AllUrls />} />
         <Route path="/url-shortener" element={<UrlShortener />} />
         <Route path="/all-qrs" element={<AllQrs />} />

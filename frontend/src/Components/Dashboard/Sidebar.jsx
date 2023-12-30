@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarAlt, faLink, faQrcode } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarAlt,
+  faLink,
+  faQrcode,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
   const { currentUser, logout } = useAuth();
@@ -188,16 +192,14 @@ const Sidebar = () => {
               </button>
               {isDropdownOpen && (
                 <ul id="dropdown-example" className="py-2 space-y-2">
-                  <ProductLink to="/dashboard/all-qrs">
-                    Past QRs
-                  </ProductLink>
+                  <ProductLink to="/dashboard/all-qrs">Past QRs</ProductLink>
                   <ProductLink to="/dashboard/all-urls">Past URLs</ProductLink>
                 </ul>
               )}
             </li>
           </ul>
           <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-            <CustomLink to="/dashboard/upgrade-to-pro">
+            <CustomLink to="/dashboard/pricing">
               <svg
                 className="flex-shrink-0 w-5 h-5 text-gray-300 transition duration-75"
                 aria-hidden="true"
@@ -208,18 +210,6 @@ const Sidebar = () => {
                 <path d="M7.958 19.393a7.7 7.7 0 0 1-6.715-3.439c-2.868-4.832 0-9.376.944-10.654l.091-.122a3.286 3.286 0 0 0 .765-3.288A1 1 0 0 1 4.6.8c.133.1.313.212.525.347A10.451 10.451 0 0 1 10.6 9.3c.5-1.06.772-2.213.8-3.385a1 1 0 0 1 1.592-.758c1.636 1.205 4.638 6.081 2.019 10.441a8.177 8.177 0 0 1-7.053 3.795Z" />
               </svg>
               <span className="ms-3">Upgrade to Pro</span>
-            </CustomLink>
-            <CustomLink to="/dashboard/documentation">
-              <svg
-                className="flex-shrink-0 w-5 h-5 text-gray-300 transition duration-75"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 16 20"
-              >
-                <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z" />
-              </svg>
-              <span className="ms-3">Documentation</span>
             </CustomLink>
             <CustomLink to="/dashboard/support">
               <svg

@@ -32,7 +32,6 @@ router.post('/', async (req, res) => {
                 });
             } else {
                 const shortQRUrl = baseUrl + '/QR/' + urlCode;
-                //qr logic goes here
                 const qrCodeBuffer = await QRcode.toBuffer(shortQRUrl);
                 const qrCode = qrCodeBuffer.toString("base64");
                 qrs = new Qr({

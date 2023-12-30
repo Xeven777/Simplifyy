@@ -26,7 +26,7 @@ function UrlShortener() {
     const url =
       import.meta.env.VITE_APP_NODE_ENV === "production" ? urlInProd : urlInDev;
     const userId = currentUser.uid;
-  
+
     try {
       const response = await axios.post(
         url,
@@ -39,19 +39,19 @@ function UrlShortener() {
       setQrURL(response.data.shortQRUrl);
       console.log(response.data);
       setVisitCount(response.data.visitCount);
-  
+
       const byteCharacters = atob(response.data.qrCode);
       const byteNumbers = new Array(byteCharacters.length);
-  
+
       for (let i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
-  
+
       const byteArray = new Uint8Array(byteNumbers);
       const blob = new Blob([byteArray], { type: "image/png" });
-  
-      setQr(response.data.qrCode); 
-  
+
+      setQr(response.data.qrCode);
+
       setQrImage(URL.createObjectURL(blob));
     } catch (error) {
       console.error("Error generating your QR :", error);
@@ -61,7 +61,6 @@ function UrlShortener() {
       }, 1500);
     }
   };
-  
 
   return (
     <>
@@ -89,21 +88,35 @@ function UrlShortener() {
         {qrURL && (
           <>
             <div className="result">
-              <p>Your QR Code:</p>
-              <div className="flex items-center justify-center mt-2 w-[400px]">
+              <p className="text-base font-medium md:text-xl px-5 text-center md:text-left">Your QR Code:</p>
+              <div className="flex items-center flex-col md:flex-row gap-6 justify-around mt-2 w-[400px]">
                 <a
                   href={qrURL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-fuchsia-700 bg-opacity-20 py-1 px-3 border-purple-900 border-[1px] hover:text-fuchsia-400 hover:bg-opacity-10 transition text-md"
+                  className="bg-fuchsia-700 bg-opacity-20 py-1 px-3 border-purple-900 border-[1px] hover:text-fuchsia-400 hover:bg-opacity-10 text-md "
                 >
-                  <img src={`data:image/png;base64,${qr}`} alt="QR Code" />
+                  <img
+                    src={`data:image/png;base64,${qr}`}
+                    alt="QR Code"
+                    className="hover:scale-105 transition-all duration-500"
+                  />
                 </a>
-
-                <a href={qrimage} download="QRystal-Code.png">
-                  {" "}
-                  Download{" "}
-                </a>
+                <div className="flex-col flex gap-4 text-center font-medium">
+                  <a
+                    href={qrimage}
+                    download="QRystal-Code.png"
+                    className="px-4 py-2 active:scale-95 rounded-lg bg-fuchsia-600 hover:opacity-90"
+                  >
+                    Download
+                  </a>
+                  <a
+                    href={qrURL}
+                    className="px-4 py-2 active:scale-95 rounded-lg bg-green-600 hover:opacity-90"
+                  >
+                    Visit
+                  </a>
+                </div>
               </div>
             </div>
           </>
