@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChartLine,
   faCircle,
-  faCopy,
+  faDownload,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -50,8 +49,6 @@ const QrCard = ({ qr }) => {
     }
   };
   const dateObj = new Date(qr.date);
-  const favicon =
-    data && data.favicon ? data.favicon : "../../../assets/icons8-link-30.png";
   const day = dateObj.toDateString();
   const time = dateObj.toLocaleTimeString();
   const title = data && data.title ? data.title : qr.longUrl;
@@ -62,6 +59,9 @@ const QrCard = ({ qr }) => {
       ? data.images[0]
       : "https://images.unsplash.com/photo-1649290098499-f4148542f2e0?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
+  if (deleted) {
+    return null;
+  }
   return (
     <div className="flex md:flex-row flex-col gap-4 p-6 border h-full rounded-lg shadow relative z-10 overflow-hidden hover:-translate-y-2 transition-all duration-300">
       <img
@@ -69,25 +69,22 @@ const QrCard = ({ qr }) => {
         alt=""
         className="absolute top-0 left-0 w-full h-full object-cover -z-10 rounded-lg blur-lg brightness-75 opacity-70"
       />
-      <div className="md:min-w-[150px] w-52 mx-auto overflow-hidden">
+      <div className="md:min-w-[150px] w-52 pb-2 mx-auto overflow-hidden">
         <img
           src={`data:image/png;base64,${qr.qrCode}`}
           alt=""
           className="w-full rounded-lg shadow-lg object-cover mb-4"
         />
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(qr.shortQRUrl);
-            alert("Copied to clipboard");
-          }}
+        <a
+          href={`data:image/png;base64,${qr.qrCode}`}
+          download="QRystal.png"
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 mr-2 ml-1"
         >
-          Copy
-          <FontAwesomeIcon icon={faCopy} className="ms-2" />
-        </button>
+          <FontAwesomeIcon icon={faDownload} />
+        </a>
         <button
-          className="inline-flex items-center px-4 pt-2 pb-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 ml-2"
-          onClick={() => deleteUrl(url._id)}
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
+          onClick={() => deleteUrl(qr._id)}
         >
           {loading ? (
             <FontAwesomeIcon icon={faCircle} />
@@ -102,6 +99,9 @@ const QrCard = ({ qr }) => {
             {title}
           </h5>
         </a>
+        <p className="mb-3 font-normal text-zinc-100 line-clamp-2">
+          {siteDesc}
+        </p>
         <a
           href={qr.shortQRUrl}
           className="mb-3 font-normal text-zinc-100 line-clamp-1"
@@ -110,6 +110,10 @@ const QrCard = ({ qr }) => {
         </a>
         <p className="mb-3 font-normal text-zinc-100">
           Unique Short Code : {qr.urlCode}
+        </p>
+        <p className="mb-3 font-normal text-zinc-100">
+          Day : {day} {"     "} <br />
+          Time: {time}
         </p>
         <p className="mb-3 font-normal text-zinc-100">
           Total Clicks : {qr.visitCount}

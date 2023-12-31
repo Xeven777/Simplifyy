@@ -8,7 +8,7 @@ const router = express.Router();
 // @route  POST /api/qr
 // @desc  Create short URL
 
-const num = 12;
+const num = 7;
 
 //baseUrl for backend url
 const baseUrl = process.env.NODE_ENV === 'production'
@@ -58,4 +58,14 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        await Qr.findByIdAndDelete(req.params.id);
+        res.json({ ok: true })
+    } catch (err) {
+        console.error('Error deleting URL:', err);
+        res.status(500).json({ error: 'An error occurred while deleting the URL' });
+    }
+});
 module.exports = router;
