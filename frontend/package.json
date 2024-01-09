@@ -18,7 +18,6 @@
     "axios": "^1.6.2",
     "firebase": "^10.6.0",
     "firebaseauth": "^1.0.0",
-    "million": "^2.6.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.19.0",
