@@ -27,8 +27,8 @@ const AllQrs = () => {
   }, []);
 
   return (
-    <div className="pt-20 max-w-6xl w-full ">
-      <h1 className="text-4xl font-boldp-5 text-center">All QRs</h1>
+    <div className="pt-20 max-w-6xl w-full">
+      <h1 className="text-4xl font-bold text-center p-5">All QRs</h1>
       {qrs.length > 0 ? (
         <div className="cards-cont grid grid-cols-1 sm:grid-cols-2 gap-4 items-center px-4 md:px-6 lg:px-10 py-5">
           {qrs.map((qr) => (
@@ -36,7 +36,7 @@ const AllQrs = () => {
           ))}
         </div>
       ) : (
-        <p className=" text-center">No QRs found for the current user.</p>
+        <p>No QRs found for the current user.</p>
       )}
     </div>
   );

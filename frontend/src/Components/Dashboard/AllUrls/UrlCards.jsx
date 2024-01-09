@@ -51,9 +51,7 @@ const UrlCards = ({ url }) => {
   };
   const dateObj = new Date(url.date);
   const favicon =
-    data && data.favicon
-      ? data.favicon
-      : "https://cdn.dribbble.com/users/976757/screenshots/5375959/05.jpg";
+    data && data.favicon ? data.favicon : "../../../assets/icons8-link-30.png";
   const day = dateObj.toDateString();
   const time = dateObj.toLocaleTimeString();
   const title = data && data.title ? data.title : url.longUrl;
@@ -64,11 +62,12 @@ const UrlCards = ({ url }) => {
       ? data.images[0]
       : "https://images.unsplash.com/photo-1649290098499-f4148542f2e0?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-  if (deleted) {
-    return null;
-  }
   return (
-    <div className="p-6 border rounded-lg shadow bg-slate-900 border-slate-800 flex overflow-hidden flex-col md:flex-row backdrop-blur bg-opacity-30 z-0 ">
+    <div
+      className={`p-6 border rounded-lg shadow bg-slate-900 border-slate-800 flex overflow-hidden flex-col md:flex-row backdrop-blur bg-opacity-30 z-0 ${
+        deleted ? "hidden" : ""
+      }`}
+    >
       <div className="md:min-w-[180px] lg:max-w-[210px] mb-5 md:mb-2 md:me-3 ">
         <img
           src={imageUrl}
