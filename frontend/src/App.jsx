@@ -8,9 +8,7 @@ import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 
-
 const App = () => {
-  
   return (
     <>
       <div className="bg-gray-100 min-h-screen flex justify-center">

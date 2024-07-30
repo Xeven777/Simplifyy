@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
-
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -26,7 +25,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history('/dashboard')
+      history("/dashboard");
     } catch (error) {
       console.error("Signup failed:", error);
       if (error.code === "auth/invalid-login-credentials") {
@@ -76,19 +75,19 @@ const Login = () => {
               >
                 Password
               </label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  className="mt-1 p-2 w-full border rounded"
-                  required
-                  ref={passwordRef}
-                />
-                <span
-                  onClick={togglePasswordVisibility}
-                  className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
-                >
-                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-                </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="mt-1 p-2 w-full border rounded"
+                required
+                ref={passwordRef}
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                className="absolute text-slate-500 right-1 flex justify-center items-center h-[30px] w-[50px] top-7 cursor-pointer bg-white"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
             </div>
 
             <button
@@ -100,11 +99,16 @@ const Login = () => {
             </button>
           </form>
           <div className="w-100 text-center mt-3">
-            <Link to="/forgot-password" className="text-blue-800">Forgot Password?</Link>
+            <Link to="/forgot-password" className="text-blue-800">
+              Forgot Password?
+            </Link>
           </div>
         </div>
         <div className="text-center mt-4">
-          Need an account? <Link to="/signup" className="text-blue-800">Sign Up</Link>
+          Need an account?{" "}
+          <Link to="/signup" className="text-blue-800">
+            Sign Up
+          </Link>
         </div>
       </div>
     </>
